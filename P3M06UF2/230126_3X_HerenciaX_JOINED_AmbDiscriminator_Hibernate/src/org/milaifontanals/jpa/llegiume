@@ -1,0 +1,29 @@
+El projecte conté 6 configuracions d'execució:
+> 3 P01 per a Oracle, MySQL i PostgreSQL que executen programa P01
+> 1 per a Oracle i els programes de prova P02-P03-P04
+
+Projecte amb jerarquia de classes Persona (base) i Alumne/Professor (derivades) 
+persistents via estratègia SINGLE_TABLE i marcatge XML.
+
+El marcatge XML de les 3 classes està en un sol fitxer META-INF/persona.xml
+(podríem utilitzar un fitxer XML per a cada classe)
+
+Peculiaritats JOINED:
+********************
+1 taula per les dades comunes i 1 taula per cada derivadad amb les dades específiques
+
+L'estàndard JPA indica que cal un discriminador, a la taula amb les dades comunes, 
+per distingir de quina classe és l’objecte emmagatzemat a cada fila, però no tots els 
+proveïdors JPA ho exigeixen. El detallarem com en el cas SINGLE_TABLE.
+ 
+Abans d'executar els programes, aconsellable comprovar que no existeix a la BD
+les taules PERSONA i (ALUMNE-PROFESSOR per si s'ha executat els altres exemples)
+
+Programa P01:
+> Només crea i tanca EntityManager
+> Comprovar que crea les taules - Comprovar estructura de cada taula
+
+Programes P02-P03-P04: Mostren com gestionar objectes de la jerarquia.
+> P02: Després fer SELECT a les 3 taules
+> P03: Recupera cada persona en el tipus que correspon (Persona/Alumne/Professor)
+> P04: Exemple de "com filtrar per classes" en fer una Query (JPQL)

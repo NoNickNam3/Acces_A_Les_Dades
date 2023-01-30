@@ -1,0 +1,39 @@
+El projecte conté 4 configuracions d'execució:
+> 2 P01 per a MySQL i PostgreSQL que executen programa P01
+> 2 P02 per a MySQL i PostgreSQL que executen programa P02
+> En Oracle no és factible!!!
+
+Projecte amb 2 classes persistents amb identificador generat automàticament amb estratègia IDENTITY
+> ClauIdentity1: Podeu comprovar la sintaxi via anotacions
+> ClauIdentity2: Podeu comprovar la sintaxi via XML en arxiu clauIdentity2.xml
+
+En MySQL:
+> El camp codi a les dues taules és autonumèric
+En PostgreSQL:
+> Genera per a cada taula una seqüencia clau_identity#_codi_seq 
+  i el camp codi de la taula està enllaçat amb la seva seqüència
+  (és un camp autonumèric a tots efectes:
+   si ens connectem directe a la BD i fem un insert sense emplenar codi,
+   PostgreSQL omple automaticament codi amb valor que correspon
+   sense necessitat de trigger before com necessita Oracle amb seqüencies)
+  Podeu comprovar que si elimineu la taula, s'elimina automàticament la
+  correspoinent seqüencia.
+
+Abans d'executar els programes, aconsellable comprovar que no existeix a la BD
+les taules clau_identity1 i clau_identity2.
+
+Programa P01:
+> Només crea i tanca EntityManager
+> Comprovar que crea taules (i en PostgreSQL les seqüencies)
+
+Programa P02:
+> Crea diversos objectes de ClauIdentity1 i ClauIdentity2 alternativament.
+> En aquest cas, cada taula té el seu comptador
+> ATENCIÓ!!! JPA no assigna els codis mentre no hi ha transacció oberta
+  Observar que l'execució del programa mostra els codis buits.
+  Però si fem una SQL sobre la BD veurem que tenen codi!!!
+  Si obriu la transacció abans del bucle i tornem a excutar el programa
+  veurem que els objectes tenen codi una vegada fet el em.persist(obj).
+  Per tant, si volem tenir codi en el moment de fer-lo persistent,
+  cal tenir transacció oberta.
+

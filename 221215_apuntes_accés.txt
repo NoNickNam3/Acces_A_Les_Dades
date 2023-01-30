@@ -1,0 +1,62 @@
+Lenguajes Precompilados
+	.c --Compila--> .obj / .o --link--> .exe
+		El .c se compila y genera el .obj, que al linkarse, recibe las librerias que hayamos puesto para generar el .exe
+		(emosIdo engañados) --> #define no es constante en c. En c, las constantes son const "tipo" "nombre" = "valor"
+		
+		Ejemplo de clase:
+			#include <stdio.h>
+			#include <string.h>
+			#define MAX 30
+			
+			void main(){
+				int t[MAX];
+				const int x = 10;
+				int y = 20;
+			}
+			
+			==================
+			x en la ram es un valor que no es modificable.
+			y en la ram es un valor que si es modificable.
+			
+			El include substiruye la linea en la que se realiza por todas las lineas del interior la librería.
+			El define cuando se compila, se substituye EN TODAS LAS LINEAS DEL PROGRAMA
+			el valor del define por aquello que representa (el programa leerá int t[30];),
+			en cambio, cuando si utilizemos la constante, leerá su nombre como tal (t[x];) donde x = 10.
+			==================
+		
+	
+	.java --Compila--> .class
+		java ya linka las librerias al compilar.
+		
+
+JDO --> Estándard de java desarrollado por apache que se basa en la postcompilación, 
+su funcionamiento consiste en compilar dos veces, generando primero el .class y luego recompilando 
+con la información adicional para sincronizar con ell sistema gestor de BDD.
+(aunque parezca que tiene un muy buen funcionamiento, no ha funcionado a nivel comercial, no ha funcionado)
+
+Nosotros utilizaremos JPA para conectar con el sistema gestor de BDD
+	JPA:
+		Que necesitan los objetos para ser persistentes?
+			+Las clases persistentes tienen que ser serializables,
+			+El mapeado de las clases se puede hacer con anotaciones o con XML (en caso de conflicto, las XML tienen prioridad)
+			
+		
+		(Hay que incorporar la librería de JPA del pdf del classroom)
+		A la hora de compilar, pondremos el .jar de jpa y su documentación.
+		A la hora de ejecutar hay que añadir el "motor" ORM que vayamos a utilizar (hybernate, eclipse, o el que utilizemos).
+		De hibernate hibernate, es en la versión 5.6.14 (4/11/22)
+		De eclipseLink, es la versión 2.7.11 (10/08/22)
+			--> AMBOS CUMPLEN CON EL ESTÁNDARD JPA 2.2 <--
+		
+		(EVITAR VERSIÓN DE JAVA 10!!!)
+		(Las herramientas de hoy en día, están empezando a dejar de dar soporte a JPA, se están pasando a Jakarta (Otro estándard más moderno)).
+		De hibernate hay que descargar una parte de la librería, por lo cual, hay un segundo enlace para hacer la descarga.
+		En el caso de EclipseLink, nos lo bajamos, y dentro ponemos los jar que pone en el pdf dentro de la librería con nombre EclipseLink 2.7.11
+		
+	En JPA tenemos un gestor de entidades (entity manager o la connection de JDBC), que se encarga de la gestión de todas las entidades.
+	
+	Persistencia: El entitymanager se crea desde una "factoria" (EntityManagerFactory), que requiere de una unidad de persistencia. 
+	(fichero xml que se llama META-INF/persistence.xml y contiene URL, usuario, contraseña, ip)
+	
+	Como crear persistencia???
+		File > New > Persistance (de tipo persistance unit)

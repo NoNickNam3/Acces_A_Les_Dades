@@ -1,0 +1,25 @@
+El projecte conté 6 configuracions d'execució:
+> 3 P01 per a Oracle, MySQL i PostgreSQL que executen programa P01
+> 1 per a Oracle i els programes de prova P02-P03-P04
+
+Projecte amb jerarquia de classes Persona (base) i Alumne/Professor (derivades) 
+persistents via estratègia TABLE_PER_CLASS i anotacions
+
+Peculiaritats TABLE_PER_CLASS:
+*****************************
+1 per cada classe de la jerarquia no abstracta
+
+Com que els objectes estan separats en taules diferents, NO es necessita 
+discriminador.
+
+Abans d'executar els programes, aconsellable comprovar que no existeix a la BD
+les taules PERSONA-ALUMNE-PROFESSOR
+
+Programa P01:
+> Només crea i tanca EntityManager
+> Comprovar que crea les taules - Mirar estructura de cadascuna
+
+Programes P02-P03-P04: Mostren com gestionar objectes de la jerarquia.
+> P02: Després fer SELECT a les tres taules. 
+> P03: Recupera cada persona en el tipus que correspon (Persona/Alumne/Professor)
+> P04: Exemple de "com filtrar per classes" en fer una Query (JPQL)

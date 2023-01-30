@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="UP-Oracle" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <mapping-file>META-INF/clauTable2.xml</mapping-file>
+    <class>org.milaifontanals.jpa.ClauTable1ViaAnotacions</class>
+    <class>org.milaifontanals.jpa.ClauTable2ViaXml</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//192.168.43.252:1521/XEPDB1"/>
+      <property name="javax.persistence.jdbc.user" value="alumne"/>
+      <property name="javax.persistence.jdbc.password" value="alumne"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
+      <!--            <property name="javax.persistence.schema-generation.database.action" 
+            value="drop-and-create"/>-->
+      <!-- Propietats específiques per Hibernate-->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <!--      <property name="hibernate.show_sql" value="true"/>                    
+      <property name="hibernate.format_sql" value="true"/>-->
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="UP-PostgreSQL" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <mapping-file>META-INF/clauTable2.xml</mapping-file>
+    <class>org.milaifontanals.jpa.ClauTable1ViaAnotacions</class>
+    <class>org.milaifontanals.jpa.ClauTable2ViaXml</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/m06uf2"/>
+      <property name="javax.persistence.jdbc.user" value="alumne"/>
+      <property name="javax.persistence.jdbc.password" value="alumne"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <!--            <property name="javax.persistence.schema-generation.database.action" 
+            value="drop-and-create"/>-->
+      <!-- Propietats específiques per Hibernate-->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <!--      <property name="hibernate.show_sql" value="true"/>                    
+      <property name="hibernate.format_sql" value="true"/>-->
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="UP-MySQL" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <mapping-file>META-INF/clauTable2.xml</mapping-file>
+    <class>org.milaifontanals.jpa.ClauTable1ViaAnotacions</class>
+    <class>org.milaifontanals.jpa.ClauTable2ViaXml</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/m06uf2?serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.user" value="alumne"/>
+      <property name="javax.persistence.jdbc.password" value="alumne"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <!--            <property name="javax.persistence.schema-generation.database.action" 
+            value="drop-and-create"/>-->
+      <!-- Propietats específiques per Hibernate-->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <!--      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>-->
+    </properties>
+  </persistence-unit>
+</persistence>

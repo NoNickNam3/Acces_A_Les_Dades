@@ -1,0 +1,25 @@
+El projecte conté 6 configuracions d'execució:
+> 3 P01 per a Oracle, MySQL i PostgreSQL que executen programa P01
+> 3 P02 per a Oracle, MySQL i PostgreSQL que executen programa P02
+
+Projecte amb 2 classes persistents amb identificador generat automàticament amb estratègia TABLE
+> ClauTable1: Podeu comprovar la sintaxi via anotacions
+> ClauTable2: Podeu comprovar la sintaxi via XML en arxiu clauTable2.xml
+
+En aquest cas, via anotació o XML cal indicar QUI genera la taula de comptadors
+i donar un nom i estructura a la taula. COMPTE! La mateixa taula de comptadors
+pot ser compartida per diverses classes, però en tal situació, l'estructura de la
+taula (noms de les columnes9 ha de ser la mateixa!!! En el projecte, s'utilitza la
+mateixa taula clau_comptadors per a les dues classes.
+
+Abans d'executar els programes, aconsellable comprovar que no existeix a la BD
+les taules clau_table1, clau_table2 i de la taula de comptadors "clau_comptadors"
+
+Programa P01:
+> Només crea i tanca EntityManager
+> Comprovar que crea taules i seqüències.
+
+Programa P02:
+> Crea diversos objectes de ClauTable1 i ClauTable2 alternativament.
+> En aquest cas, cada taula té el seu comptador
+

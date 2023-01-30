@@ -1,0 +1,38 @@
+El projecte conté 6 configuracions d'execució:
+> 3 P01 per a Oracle, MySQL i PostgreSQL que executen programa P01
+> 1 per a Oracle i els programes de prova P02-P03-P04
+
+Projecte amb jerarquia de classes Persona (base) i Alumne/Professor (derivades) 
+persistents via estratègia SINGLE_TABLE i anotacions
+
+Peculiaritats SINGLE_TABLE:
+**************************
+1 única taula per tota la jerarquia – Genera columnes amb molts valors nuls.
+
+JPA necessita poder distingir de quina classe és l’objecte emmagatzemat a cada fila 
+i això ho aconsegueix amb una columna discriminador. Es pot indicar el nom i tipus 
+d’aquesta columna així com els valors que ha de prendre per a cada taula 
+(en el nostre exemple, hem declarat columna TIPUS cadena de llargada 2 amb valors PE
+per distingir les persones, AL per distingir els alumnes i PR pels professors). 
+Si no es detalla com ha de ser el discriminador, el proveïdor JPA pren decisions.
+Així, Hibernate crea, en Oracle, una columna de nom DTYPE i tipus varchar2(31) 
+i utilitza com a valor discriminador el nom de la classe.
+
+Les columnes específiques d’una classe derivada MAI poden ser nullable=false
+(per tant, encara que un camp de la classe sigui obligatòria, la corresponent 
+columna ha de ser NOT NULL).
+
+En aquest projecte exemple, com que a l'entitat Persona (base) no s'indica nom
+de la taula a la BD, es crea la única taula amb nom PERSONA.
+
+Abans d'executar els programes, aconsellable comprovar que no existeix a la BD
+les taules PERSONA i (ALUMNE-PROFESSOR per si s'ha executat els altres exemples)
+
+Programa P01:
+> Només crea i tanca EntityManager
+> Comprovar que crea la taula
+
+Programes P02-P03-P04: Mostren com gestionar objectes de la jerarquia.
+> P02: Després fer SELECT de la taula PERSONA
+> P03: Recupera cada persona en el tipus que correspon (Persona/Alumne/Professor)
+> P04: Exemple de "com filtrar per classes" en fer una Query (JPQL)

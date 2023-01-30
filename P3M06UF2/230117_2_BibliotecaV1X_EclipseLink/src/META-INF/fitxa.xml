@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+          http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+                 version="2.2">
+    <entity class="org.milaifontanals.biblioteca.Fitxa" access="FIELD" metadata-complete="true">
+        <table name="fitxa">
+            <index name="FITXA_IDX_TITOL"
+                   column-list="titol">
+            </index>
+        </table>
+        <attributes>
+            <id name="referencia"/>
+            <basic name="referencia">
+                <column nullable="false" length="30"/>
+            </basic>
+            <basic name="titol">
+                <column length="30"/>
+            </basic>
+            <basic name="esDeixa" optional="false">
+                <column name="es_deixa" nullable="false"/>
+            </basic>
+            <basic name="momentCreacio" optional="false">
+                <column name="moment_creacio" nullable="false"/>
+            </basic>
+            <basic name="momentModificacio">
+                <column name="moment_modificacio"/>
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>

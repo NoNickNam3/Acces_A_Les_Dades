@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.jpa.Persona" access="FIELD" metadata-complete="true">
+        <inheritance strategy="TABLE_PER_CLASS"/>
+        <attributes>
+            <id name="dni">
+                <column length="15" />
+            </id>
+            <basic name="nom" optional="false">
+                <column nullable="false" length="50"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="org.milaifontanals.jpa.Alumne" access="FIELD" metadata-complete="true">
+        <attributes>
+            <basic name="dataNaixement" optional="false">
+                <column name="data_naixement" nullable="false"/>
+                <temporal>DATE</temporal>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="org.milaifontanals.jpa.Professor" access="FIELD" metadata-complete="true">
+        <attributes>
+            <basic name="esDurillo" optional="false">
+                <column name="es_durillo" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+    
+</entity-mappings>

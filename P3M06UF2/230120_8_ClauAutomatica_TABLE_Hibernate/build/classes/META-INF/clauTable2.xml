@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.jpa.ClauTable2ViaXml" access="FIELD" metadata-complete="true">
+        <table name="clau_table2"/>
+        <attributes>
+            <id name="codi">
+                <generated-value strategy="TABLE" generator="gen_clau_table"/>
+                <table-generator name="gen_clau_table" table="clau_comptadors"
+                                 pk-column-name="taula" value-column-name="comptador"
+                                 pk-column-value="table2" allocation-size="1"
+                                 initial-value="1001"/>
+            </id>
+            <basic name="descripcio" optional="false">
+                <column nullable="false" length="30"/>
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>
