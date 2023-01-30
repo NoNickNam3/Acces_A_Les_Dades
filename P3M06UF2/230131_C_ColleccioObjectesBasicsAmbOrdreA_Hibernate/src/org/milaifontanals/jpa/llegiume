@@ -1,0 +1,21 @@
+El projecte conté 7 configuracions d'execució:
+> 3 P01 per a Oracle, MySQL i PostgreSQL que executen programa P01
+> 1 per a Oracle i els programes de prova P02-P03-P04-P05
+
+Projecte amb col·lecció de telèfons (tipus basic String) per a cada persona
+via ANOTACIONS, mantenint a la taula l'ordre que hi hagi a la col·lecció
+
+Abans d'executar els programes, aconsellable comprovar que no existeix a la BD
+les taules PERSONA i PERSONA_TELEFONS.
+
+Programa P01:
+> Només crea i tanca EntityManager
+> Comprovar que crea les taules - Comprovar estructura de PERSONA_TELEFONS
+
+Programes P02-P03-P04-P05: Mostren la gestió dels objectes de la col·lecció
+> P02 insereix persones amb telèfons. Observeu com queden dins les taula.
+> P03: Mostra les persones amb els seus telèfons
+> P04: Elimina telèfon d’una persona
+> P05: Afegeix un telèfon a una persona
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.jpa.Persona" access="FIELD" metadata-complete="true">
+        <attributes>
+            <id name="dni">
+                <column length="15" />
+            </id>
+            <basic name="nom" optional="false">
+                <column nullable="false" length="50"/>
+            </basic>
+            <embedded name="correuElectronic">
+                <!--El següent element és per redefinir el marcatge hereteat de la classe incrustada-->
+                <attribute-override name="correu">
+                    <column name="e_mail" length="320"/>
+                </attribute-override>
+            </embedded>
+        </attributes>
+    </entity>
+</entity-mappings>

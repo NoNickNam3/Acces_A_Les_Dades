@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <mapped-superclass class="org.milaifontanals.biblioteca.Fitxa" access="FIELD" metadata-complete="true">
+        <attributes>
+            <id name="referencia">
+                <column length="10"/>
+            </id>
+            <basic name="titol" optional="false">
+                <column column-definition="varchar(60) check(length(titol)>0)"/>
+            </basic>
+            <basic name="esDeixa">
+                <column name="es_deixa"/>
+            </basic>
+            <basic name="momentCreacio" optional="false">
+                <column nullable="false" name="moment_creacio" updatable="false"/>
+            </basic>
+            <basic name="momentModificacio" >
+                <column name="moment_modificacio"/>
+            </basic>
+        </attributes>
+    </mapped-superclass>
+    <entity class="org.milaifontanals.biblioteca.FitxaLlibre" access="FIELD" metadata-complete="true">
+        <table name="f_llibre"/>
+        <attributes>
+            <basic name="editorial">
+                <column length="30"/>
+            </basic>
+            <basic name="isbn">
+                <column length="13"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="org.milaifontanals.biblioteca.FitxaRevista" access="FIELD" metadata-complete="true">
+        <table name="f_revista"/>
+        <attributes>
+            <basic name="any">
+                <column name="anyo" column-definition="integer not null check (anyo>0)"/>
+            </basic>
+            <basic name="num">
+                <column column-definition="integer not null check (num>0)"/>
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>

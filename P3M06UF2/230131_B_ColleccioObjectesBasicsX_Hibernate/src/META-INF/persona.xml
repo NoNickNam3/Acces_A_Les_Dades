@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.jpa.Persona" access="FIELD" metadata-complete="true">
+        <attributes>
+            <id name="dni">
+                <column length="15" />
+            </id>
+            <basic name="nom" optional="false">
+                <column nullable="false" length="50"/>
+            </basic>
+            <element-collection name="telefons">
+                <column name="telefon" length="15" nullable="false"/>
+                <collection-table name="persona_telefons">
+                    <join-column name="dni"/>
+                    <!--<join-column name="dni" referenced-column-name="dni"/>-->
+<!--          L'atribut "referenced-column-name" cal usar-lo si la clau forana
+          no fa referència a la PK de la taula referenciada.-->
+                    <foreign-key name="persona_telefons_fk_dni"/>
+                    <unique-constraint name="persona_telefons_un_dni_tel">
+                        <column-name>dni</column-name>                         
+                        <column-name>telefon</column-name>
+                    </unique-constraint>
+                </collection-table>
+            </element-collection>            
+        </attributes>
+    </entity>
+</entity-mappings>
