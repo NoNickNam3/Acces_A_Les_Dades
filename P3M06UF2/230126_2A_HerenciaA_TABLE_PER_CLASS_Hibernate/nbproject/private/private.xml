@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/DOCENCIA/ta/M06/P3M06UF2/230126_2A_HerenciaA_TABLE_PER_CLASS_Hibernate/src/org/milaifontanals/jpa/Persona.java</file>
+            <file>file:/E:/DOCENCIA/ta/M06/P3M06UF2/230126_2A_HerenciaA_TABLE_PER_CLASS_Hibernate/src/org/milaifontanals/jpa/P02_InserirPersones.java</file>
+            <file>file:/E:/DOCENCIA/ta/M06/P3M06UF2/230126_2A_HerenciaA_TABLE_PER_CLASS_Hibernate/src/org/milaifontanals/jpa/P04_MostrarAlumnesIProfessors.java</file>
+            <file>file:/E:/DOCENCIA/ta/M06/P3M06UF2/230126_2A_HerenciaA_TABLE_PER_CLASS_Hibernate/src/org/milaifontanals/jpa/Alumne.java</file>
+            <file>file:/E:/DOCENCIA/ta/M06/P3M06UF2/230126_2A_HerenciaA_TABLE_PER_CLASS_Hibernate/src/org/milaifontanals/jpa/P03_MostrarTotesLesPersones.java</file>
+        </group>
     </open-files>
 </project-private>

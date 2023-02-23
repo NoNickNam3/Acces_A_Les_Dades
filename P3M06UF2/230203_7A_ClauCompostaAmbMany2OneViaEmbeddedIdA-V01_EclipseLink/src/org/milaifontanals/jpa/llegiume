@@ -1,0 +1,35 @@
+El projecte conté 6 configuracions d'execució:
+> 3 P01 per a Oracle, MySQL i PostgreSQL que executen programa P01
+> 1 per a Oracle i els programes de prova P02-P03-p04
+
+Exemple de clau composta amb algun(s) camp(s) ManyToOne o OneToOne via classe incrustada
+****************************************************************************************
+
+Abans d'executar els programes, aconsellable comprovar que no existeix a la BD
+les taules PAIS i PROVINCIA
+
+Programa P01: En ECLIPSE-LINK PETA!!!
+> Només crea i tanca EntityManager
+> Comprovar que crea les taules - Comprovar estructura de PROVINCIA:
+  - JPA(Hibernate) crea la clau primària seguint l'ordre alfabètic 
+    dels camps en la definició de la classe:
+    pais-codi - Alfabèticament: codi-pais => PK (codi_prov, codi_pais)
+  - JPA no permet indicar ordre en la creació de la PK
+  - JPA permet crear índex (@Table(indexes...)) i aquí SÍ que segueix 
+    l'ordre que s'indica, però si es crea un índex amb mateixos camps
+    que la PK, no el té en compte.
+  - Per tant, si es vol que les cols de la PK segueixin un ordre determinat:
+    > A la classe Java anomenar els camps tenint en compte que seguira
+      ordre alfabètic => NO té cap sentit!!! (Però és una solució...)
+      En una classe INCRUSTADA que fa de clau composta, els camps no tenen per què
+      anomenar-se igual que els camps de la classe original... Per tant, podem 
+      utilitzar noms que segueixin l'ordre lexicogràfic que interessi.
+    > Com en altres ocasions... La BD crear-la via guió i fer que JPA només validi.
+
+Programes P02-P03-P04: Mostren la gestió de dades
+> Gestió problemàtica a l'hora de cercar una província (P04).
+  Per poder executar el EntityManager.find() cal disposar de l'objecte Pais
+  Amb el codi de país no n'hi ha prou... És adequat???
+  És a dir, no es pot executar em.find(new ProvinceId("ES","GI")) !!! Llàstima!!!
+
+

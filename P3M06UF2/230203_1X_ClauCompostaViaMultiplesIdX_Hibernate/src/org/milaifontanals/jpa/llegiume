@@ -1,0 +1,14 @@
+El projecte conté 5 configuracions d'execució:
+> 3 P01 per a Oracle, MySQL i PostgreSQL que executen programa P01
+> 1 per a Oracle i els programes de prova P02-P03
+
+Abans d'executar els programes, aconsellable comprovar que no existeix a la BD
+la taula COLOR
+
+Programa P01:
+> Només crea i tanca EntityManager
+> Comprovar que crea les taules - Comprovar estructura de PERSONA
+
+Programes P02-P03: Mostren la gestió de colors persistents
+
+

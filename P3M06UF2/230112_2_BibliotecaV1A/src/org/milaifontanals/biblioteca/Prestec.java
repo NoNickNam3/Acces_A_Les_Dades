@@ -5,19 +5,11 @@
  */
 package org.milaifontanals.biblioteca;
 
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
-@Entity
-public class Prestec implements Serializable {
-    @Id
+public class Prestec  {
     private long numero;    // Obligatori - Immutable
-    @ManyToOne
     private Soci soci;      // Obligatori - Immutable
-    @ManyToOne
     private Fitxa fitxa;    // Obligatori - Immutable
     private Date momentPrestec;   // Obligatori   (moment temporal) - Immutable
     private Date momentRetorn;    // No obligatori (moment temporal) - Posterior a momentPrestec
@@ -34,7 +26,7 @@ public class Prestec implements Serializable {
         return numero;
     }
 
-    public void setNumero(long numero) {
+    private final void setNumero(long numero) {
         if (numero<=0) {
             throw new PrestecException("En un préstec, el número és estrictament positiu");
         }
@@ -45,7 +37,7 @@ public class Prestec implements Serializable {
         return soci;
     }
     
-    private void setSoci(Soci soci) {
+    private final void setSoci(Soci soci) {
         if (soci==null) {
             throw new PrestecException("En un préstec, el soci és obligatori");
         }
@@ -56,7 +48,7 @@ public class Prestec implements Serializable {
         return fitxa;
     }
 
-    private void setFitxa(Fitxa fitxa) {
+    private final void setFitxa(Fitxa fitxa) {
         if (fitxa==null) {
             throw new PrestecException("En un préstec, la fitxa és obligatòria");
         }
@@ -67,7 +59,7 @@ public class Prestec implements Serializable {
         return momentPrestec;
     }
 
-    private void setMomentPrestec(Date momentPrestec) {
+    private final void setMomentPrestec(Date momentPrestec) {
         if (momentPrestec==null) {
             throw new PrestecException("En un préstec, la data de préstec és obligatòria");
         }
@@ -108,7 +100,7 @@ public class Prestec implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Prestec other = (Prestec) obj;
+        final Prestec other = (Prestec) obj;
         if (this.numero != other.numero) {
             return false;
         }

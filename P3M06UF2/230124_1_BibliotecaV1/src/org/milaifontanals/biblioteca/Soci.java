@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Usuari
  */
 public class Soci implements Serializable {
-    private int codi;           // Estrictament positiu    
+    private int codi;           // Estrictament positiu  - GETIONAT per JPA  
     private String cognom1;     // Obligatori i no buit
     private String cognom2;     // No obligatori o buit
     private String nom;         // Obligatori i no buit
@@ -23,8 +23,7 @@ public class Soci implements Serializable {
     protected Soci() {
         
     }
-    public Soci(int codi, String cognom1, String nom, Date dataNaix, char sexe) {
-        setCodi(codi);
+    public Soci(String cognom1, String nom, Date dataNaix, char sexe) {
         setCognom1(cognom1);
         setNom(nom);
         setDataNaix(dataNaix);
@@ -33,13 +32,6 @@ public class Soci implements Serializable {
 
     public int getCodi() {
         return codi;
-    }
-
-    private  void setCodi(int codi) {
-        if (codi<=0) {
-            throw new SociException("Codi de soci ha de ser estrictament positiu");
-        }
-        this.codi = codi;
     }
 
     public String getCognom1() {

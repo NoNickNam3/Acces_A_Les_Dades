@@ -2,6 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/DOCENCIA/ta/M06/P3M06UF2/230126_3A_HerenciaA_JOINED_AmbDiscriminatoir_Hibernate/src/org/milaifontanals/jpa/Persona.java</file>
+            <file>file:/E:/DOCENCIA/ta/M06/P3M06UF2/230126_3A_HerenciaA_JOINED_AmbDiscriminatoir_Hibernate/src/org/milaifontanals/jpa/Professor.java</file>
+            <file>file:/E:/DOCENCIA/ta/M06/P3M06UF2/230126_3A_HerenciaA_JOINED_AmbDiscriminatoir_Hibernate/src/org/milaifontanals/jpa/Alumne.java</file>
+        </group>
     </open-files>
 </project-private>

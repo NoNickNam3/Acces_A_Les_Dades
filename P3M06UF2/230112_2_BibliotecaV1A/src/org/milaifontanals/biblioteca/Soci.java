@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "SOCI", // No cal, per què coincideix amb el que crearia JPA automàticament
@@ -58,7 +59,7 @@ public class Soci implements Serializable {
         return codi;
     }
 
-    private void setCodi(int codi) {
+    private final void setCodi(int codi) {
         if (codi <= 0) {
             throw new SociException("Codi de soci ha de ser estrictament positiu");
         }
@@ -69,7 +70,7 @@ public class Soci implements Serializable {
         return cognom1;
     }
 
-    public void setCognom1(String cognom1) {
+    public final void setCognom1(String cognom1) {
         if (cognom1 == null || cognom1.length() == 0) {
             throw new SociException("Cognom1 obligatori i no buit");
         }
@@ -91,7 +92,7 @@ public class Soci implements Serializable {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public final void setNom(String nom) {
         if (nom == null || nom.length() == 0) {
             throw new SociException("Nom obligatori i no buit");
         }
@@ -102,7 +103,7 @@ public class Soci implements Serializable {
         return dataNaix;
     }
 
-    public void setDataNaix(Date dataNaix) {
+    public final void setDataNaix(Date dataNaix) {
         if (dataNaix == null) {
             throw new SociException("Data de naixement obligatòria");
         }
@@ -113,7 +114,7 @@ public class Soci implements Serializable {
         return sexe;
     }
 
-    public void setSexe(char sexe) {
+    public final void setSexe(char sexe) {
         sexe = Character.toUpperCase(sexe);
         if (sexe != 'M' && sexe != 'F') {
             throw new SociException("Valors vàlids per sexe: (M)ale / (F)emale");
@@ -139,7 +140,7 @@ public class Soci implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Soci other = (Soci) obj;
+        final Soci other = (Soci) obj;
         return this.codi == other.codi;
     }
 

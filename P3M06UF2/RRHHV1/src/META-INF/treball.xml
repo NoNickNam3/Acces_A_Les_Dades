@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.rrhh.Treball" access="FIELD" metadata-complete="true">
+        <table name="JOBS">
+        </table>
+        <attributes>
+            <id name="id">
+                <column name="JOB_ID"/>
+            </id>
+            <basic name="titol" optional="false">
+                <column name="JOB_TITLE"/>
+            </basic>
+            <basic name="salariMinim">
+                <column name="MIN_SALARY"/>
+            </basic>
+            <basic name="salariMaxim">
+                <column name="MAX_SALARY"/>
+            </basic>
+            <one-to-many name="contractes" mapped-by="treball"/>
+        </attributes>
+    </entity>
+
+</entity-mappings>

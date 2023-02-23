@@ -5,14 +5,13 @@
  */
 package org.milaifontanals.biblioteca;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Usuari
  */
-public class Prestec implements Serializable {
+public class Prestec  {
     private long numero;    // Obligatori - Immutable
     private Soci soci;  // Obligatori - Immutable
     private Fitxa fitxa;    // Obligatori - Immutable
@@ -31,7 +30,7 @@ public class Prestec implements Serializable {
         return numero;
     }
 
-    public final void setNumero(long numero) {
+    private final void setNumero(long numero) {
         if (numero<=0) {
             throw new PrestecException("En un préstec, el número és estrictament positiu");
         }

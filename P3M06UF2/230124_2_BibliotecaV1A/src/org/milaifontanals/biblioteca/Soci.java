@@ -28,15 +28,16 @@ import javax.persistence.TableGenerator;
 public class Soci implements Serializable {
 
     @Id
-    @TableGenerator(name = "gen_clau_table", table = "comptador",
+    @TableGenerator(name = "gen_clau_table", table = "comptadors",
             pkColumnName = "taula",
             valueColumnName = "comptador",
             pkColumnValue = "soci",
-            initialValue = 100,
-            allocationSize = 1
+            initialValue=100,       // És el lastValue => Començarà amb 101
+            allocationSize = 1      // Per a que l'eina JPA no reservi números (per defecte 50)
+            // No hi ha manera d'indicar SALT => Són números correlatius
     )
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "gen_clau_table")
-    private int codi;           // Estrictament positiu 
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="gen_clau_table")
+    private int codi;           // Estrictament positiu - GESTIONAT per JPA
     @Basic(optional = false)
     @Column(nullable = false, length = 30)
     private String cognom1;     // Obligatori i no buit
@@ -50,6 +51,7 @@ public class Soci implements Serializable {
     private Date dataNaix;     // Obligatori
 //    @Column(nullable = false, columnDefinition = "char check (sexe in ('M','F'))")
     // La marca anterior no funciona en MySQL, per la sintaxi "create table" que genera Hibernate
+    @Basic(optional = false)
     @Column(columnDefinition = "char check (sexe in ('M','F'))")
     private char sexe;          // (M)ale / (F)emale
 
@@ -71,7 +73,7 @@ public class Soci implements Serializable {
         return cognom1;
     }
 
-    public void setCognom1(String cognom1) {
+    public  void setCognom1(String cognom1) {
         if (cognom1 == null || cognom1.length() == 0) {
             throw new SociException("Cognom1 obligatori i no buit");
         }
@@ -93,7 +95,7 @@ public class Soci implements Serializable {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public  void setNom(String nom) {
         if (nom == null || nom.length() == 0) {
             throw new SociException("Nom obligatori i no buit");
         }
@@ -104,7 +106,7 @@ public class Soci implements Serializable {
         return dataNaix;
     }
 
-    public void setDataNaix(Date dataNaix) {
+    public  void setDataNaix(Date dataNaix) {
         if (dataNaix == null) {
             throw new SociException("Data de naixement obligatòria");
         }
@@ -115,7 +117,7 @@ public class Soci implements Serializable {
         return sexe;
     }
 
-    public void setSexe(char sexe) {
+    public  void setSexe(char sexe) {
         sexe = Character.toUpperCase(sexe);
         if (sexe != 'M' && sexe != 'F') {
             throw new SociException("Valors vàlids per sexe: (M)ale / (F)emale");

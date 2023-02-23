@@ -7,7 +7,7 @@ package org.milaifontanals.biblioteca;
 
 import java.util.Date;
 
-public class Fitxa implements Comparable<Fitxa> {
+public abstract class Fitxa implements Comparable<Fitxa> {
 
     private String referencia;          // Obligatòria i de 10 caràcters
     private String titol;               // Obligatori no buit
@@ -50,7 +50,7 @@ public class Fitxa implements Comparable<Fitxa> {
      *
      * @return La referència
      */
-    public String getReferencia() {
+    public final String getReferencia() {
         return referencia;
     }
 
@@ -59,7 +59,7 @@ public class Fitxa implements Comparable<Fitxa> {
      *
      * @return El títol
      */
-    public String getTitol() {
+    public final String getTitol() {
         return titol;
     }
 
@@ -69,7 +69,7 @@ public class Fitxa implements Comparable<Fitxa> {
      * @return true si es pot prestar, false si no es pot prestar, null si es
      * desconeix.
      */
-    public Boolean getEsDeixa() {
+    public final Boolean getEsDeixa() {
         return esDeixa;
     }
 
@@ -78,7 +78,7 @@ public class Fitxa implements Comparable<Fitxa> {
      *
      * @return
      */
-    public Date getMomentCreacio() {
+    public final Date getMomentCreacio() {
         return momentCreacio;
     }
 
@@ -87,7 +87,7 @@ public class Fitxa implements Comparable<Fitxa> {
      *
      * @return
      */
-    public Date getMomentModificacio() {
+    public final Date getMomentModificacio() {
         return momentModificacio;
     }
 
@@ -99,7 +99,7 @@ public class Fitxa implements Comparable<Fitxa> {
      * @throws FitxaException si la referència és nul·la o si té menys de 10
      * caràcters
      */
-    public void setReferencia(String referencia) {
+    public final void setReferencia(String referencia) {
         assignReferencia(referencia);
         setMomentModificacio();
     }
@@ -120,7 +120,7 @@ public class Fitxa implements Comparable<Fitxa> {
      * @param titol Títol a assignar
      * @throws FitxaException si el títol és null o buït
      */
-    public void setTitol(String titol) {
+    public final void setTitol(String titol) {
         assignTitol(titol);
         setMomentModificacio();
     }
@@ -138,7 +138,7 @@ public class Fitxa implements Comparable<Fitxa> {
      * @param esDeixa true si és deixa, false si no es deixa o null si es
      * desconeix
      */
-    public void setEsDeixa(Boolean esDeixa) {
+    public final void setEsDeixa(Boolean esDeixa) {
         assignEsDeixa(esDeixa);
         setMomentModificacio();
     }
@@ -148,12 +148,15 @@ public class Fitxa implements Comparable<Fitxa> {
     }
 
     @Override
+    public abstract String toString();
+
+    @Override
     /**
     /*
      * Dues fitxes són iguals si pertanyen a la mateixa classe i
      * tenen la mateixa referència
     */
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;      
         }
@@ -168,7 +171,7 @@ public class Fitxa implements Comparable<Fitxa> {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return 7 * referencia.hashCode();
     }
 
@@ -180,7 +183,7 @@ public class Fitxa implements Comparable<Fitxa> {
         System.out.println("\tData Last Modificació: " + momentModificacio);
     }
 
-    protected void setMomentModificacio() {
+    protected final void setMomentModificacio() {
         if (momentModificacio == null) {
             momentModificacio = new Date();
         } else {

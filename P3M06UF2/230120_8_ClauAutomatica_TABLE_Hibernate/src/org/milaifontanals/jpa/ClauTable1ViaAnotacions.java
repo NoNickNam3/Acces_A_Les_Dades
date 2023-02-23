@@ -34,10 +34,11 @@ public class ClauTable1ViaAnotacions {
             // (pot ser el nom de la taula o qualsevol nom que la identifiqui):
             pkColumnValue = "table1",
             // Valor inicial (si no es posa, agafa 1):
-            initialValue=1001,
-            // Per a que no RESERVI varis valors a cada accés a la taula de comptadors...
+            initialValue=1001,      // És el darrer valor; Començarà amb 1002!
+            // Per a que l'eina JPA no RESERVI varis valors a cada accés a la taula de comptadors...
             // Si no es posa, agafa 50!!!
             allocationSize = 1
+            // No hi ha manera d'indicar SALT => Són números correlatius
     )
     // Els valors de pkColumnName i valueColumnName haurien de ser els mateixos
     // per les diferents taules amb aquesta mateixa taula com a TableGenerator

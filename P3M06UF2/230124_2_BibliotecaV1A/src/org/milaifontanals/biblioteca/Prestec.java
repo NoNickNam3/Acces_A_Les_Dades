@@ -24,41 +24,34 @@ import javax.persistence.TableGenerator;
 public class Prestec implements Serializable {
 
     @Id
-    @TableGenerator(name = "gen_clau_table2", table = "comptador",
+    @TableGenerator(name = "gen_clau_table", table = "comptadors",
             pkColumnName = "taula",
             valueColumnName = "comptador",
             pkColumnValue = "prestec",
-            initialValue = 100,
-            allocationSize = 1
+            initialValue=1000,  // És el lastValue => Començarà amb 101
+            allocationSize = 1  // Per a que l'eina JPA no reservi números (per defecte 50)
+            // No hi ha manera d'indicar SALT => Són números correlatius            
     )
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "gen_clau_table2")
-    private long numero;    // Obligatori - Immutable
-
-    @ManyToOne(optional = false,
-            cascade = CascadeType.PERSIST,
-            fetch = FetchType.LAZY
-    )
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="gen_clau_table")
+    private long numero;    // Obligatori - Immutable - GESTIONAT per JPA
+    @ManyToOne(optional = false, cascade=CascadeType.PERSIST,
+            fetch=FetchType.LAZY)
     @JoinColumn(name = "soci", nullable = false,
             foreignKey = @ForeignKey(name = "prestec_fk_soci"))
     private Soci soci;      // Obligatori - Immutable
-
-    @ManyToOne(optional = false,
-            cascade = CascadeType.PERSIST
-//            fetch = FetchType.LAZY
-    )
-    @JoinColumn(name = "fitxa", nullable = false,
+    @ManyToOne(optional = false, cascade=CascadeType.PERSIST,
+            fetch=FetchType.LAZY)
+    @JoinColumn(name="fitxa", nullable = false,
             foreignKey = @ForeignKey(name = "prestec_fk_fitxa"))
     private Fitxa fitxa;    // Obligatori - Immutable
-
     @Basic(optional = false)
     @Column(name = "moment_prestec", nullable = false)
     private Date momentPrestec;   // Obligatori   (moment temporal) - Immutable
-
     @Column(name = "moment_retorn")
     private Date momentRetorn;    // No obligatori (moment temporal) - Posterior a momentPrestec
     // null = Pendent de retorn
     // Check interessant a nivell BD:
-//    check (moment_retorn is null or moment_retorn>moment_prestec)
+//    check (moment_retorn is not null or moment_retorn>moment_prestec)
     // JPA 2.2 no permet definir constraints que afectin a vàries columnes de la BD
 
     protected Prestec() {
@@ -71,11 +64,11 @@ public class Prestec implements Serializable {
         setMomentPrestec(momentPrestec);
     }
 
-    public  long getNumero() {
+    public long getNumero() {
         return numero;
     }
 
-    public  Soci getSoci() {
+    public Soci getSoci() {
         return soci;
     }
 
@@ -86,7 +79,7 @@ public class Prestec implements Serializable {
         this.soci = soci;
     }
 
-    public  Fitxa getFitxa() {
+    public Fitxa getFitxa() {
         return fitxa;
     }
 
@@ -97,7 +90,7 @@ public class Prestec implements Serializable {
         this.fitxa = fitxa;
     }
 
-    public  Date getMomentPrestec() {
+    public Date getMomentPrestec() {
         return momentPrestec;
     }
 
@@ -108,11 +101,11 @@ public class Prestec implements Serializable {
         this.momentPrestec = momentPrestec;
     }
 
-    public  Date getMomentRetorn() {
+    public Date getMomentRetorn() {
         return momentRetorn;
     }
 
-    public  void setMomentRetorn(Date momentRetorn) {
+    public void setMomentRetorn(Date momentRetorn) {
         if (momentRetorn != null && momentRetorn.compareTo(momentPrestec) <= 0) {
             throw new PrestecException("El retorn d'un préstec ha de ser posterior al moment en què s'ha efectuat el préstec");
         }
@@ -125,14 +118,14 @@ public class Prestec implements Serializable {
     }
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         int hash = 3;
         hash = 47 * hash + (int) (this.numero ^ (this.numero >>> 32));
         return hash;
     }
 
     @Override
-    public final boolean equals(Object obj) {
+    public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }

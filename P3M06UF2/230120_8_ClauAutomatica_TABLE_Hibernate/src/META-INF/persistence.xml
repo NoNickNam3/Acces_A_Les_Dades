@@ -6,9 +6,9 @@
     <class>org.milaifontanals.jpa.ClauTable1ViaAnotacions</class>
     <class>org.milaifontanals.jpa.ClauTable2ViaXml</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//192.168.43.252:1521/XEPDB1"/>
-      <property name="javax.persistence.jdbc.user" value="alumne"/>
-      <property name="javax.persistence.jdbc.password" value="alumne"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//10.135.0.10:1521/XEPDB1"/>
+      <property name="javax.persistence.jdbc.user" value="m06uf2"/>
+      <property name="javax.persistence.jdbc.password" value="m06uf2"/>
       <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
       <!--            <property name="javax.persistence.schema-generation.database.action" 
             value="drop-and-create"/>-->

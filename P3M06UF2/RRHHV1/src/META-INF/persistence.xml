@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+          http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">   
+    <persistence-unit name="UP-Oracle-Hibernate" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <mapping-file>META-INF/empleat.xml</mapping-file>
+        <mapping-file>META-INF/treball.xml</mapping-file>
+        <class>org.milaifontanals.rrhh.Empleat</class>
+        <class>org.milaifontanals.rrhh.Treball</class>
+        <class>org.milaifontanals.rrhh.Contracte</class>
+        <class>org.milaifontanals.rrhh.Departament</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" 
+                      value="jdbc:oracle:thin:@//10.135.0.10:1521/XEPDB1"/>
+            <property name="javax.persistence.jdbc.user" value="rrhhv1"/>
+            <property name="javax.persistence.jdbc.password" value="rrhhv1"/>
+            <property name="javax.persistence.jdbc.driver" 
+                      value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+            <!--<property name="hibernate.hbm2ddl.auto" value="validate"/>-->
+            <!--<property name="hibernate.show_sql" value="true"/>-->
+            <!--<property name="hibernate.format_sql" value="true"/>-->
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="UP-Oracle-EclipseLink" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <mapping-file>META-INF/empleat.xml</mapping-file>
+        <mapping-file>META-INF/treball.xml</mapping-file>
+        <class>org.milaifontanals.rrhh.Empleat</class>
+        <class>org.milaifontanals.rrhh.Treball</class>
+        <class>org.milaifontanals.rrhh.Contracte</class>
+        <class>org.milaifontanals.rrhh.Departament</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" 
+                      value="jdbc:oracle:thin:@//10.135.0.10:1521/XEPDB1"/>
+            <property name="javax.persistence.jdbc.user" value="rrhhv1"/>
+            <property name="javax.persistence.jdbc.password" value="rrhhv1"/>
+            <property name="javax.persistence.jdbc.driver" 
+                      value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <!--<property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>

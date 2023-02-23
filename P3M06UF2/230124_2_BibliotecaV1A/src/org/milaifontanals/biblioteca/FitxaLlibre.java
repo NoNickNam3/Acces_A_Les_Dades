@@ -13,6 +13,10 @@ public class FitxaLlibre extends Fitxa {
     private String editorial;   // Ha de permetre null
     private String isbn;        // Ha de ser: null o ISBN-10 o ISBN-13
 
+    protected FitxaLlibre () {
+        
+    }
+    
     public FitxaLlibre(String referencia, String titol) {
         super(referencia, titol);
         isbn = "";

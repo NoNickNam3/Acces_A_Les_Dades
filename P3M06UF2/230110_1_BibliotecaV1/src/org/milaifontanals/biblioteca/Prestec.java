@@ -30,7 +30,7 @@ public class Prestec {
         return numero;
     }
 
-    public final void setNumero(long numero) {
+    private final void setNumero(long numero) {
         if (numero<=0) {
             throw new PrestecException("En un préstec, el número és estrictament positiu");
         }

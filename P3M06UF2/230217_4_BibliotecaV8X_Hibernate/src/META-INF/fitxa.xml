@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.biblioteca.Fitxa" access="FIELD" metadata-complete="true">
+        <inheritance strategy="JOINED"/>
+        <!-- En Hibernate NO és obligatòria una columna Discriminator - Es podria eliminar -->
+        <discriminator-value>X</discriminator-value>        
+        <discriminator-column name="tipus" discriminator-type="CHAR" />
+        <attributes>
+            <id name="referencia">
+                <column length="10"/>
+            </id>
+            <basic name="titol" optional="false">
+                <column column-definition="varchar(60) check(length(titol)>0)"/>
+            </basic>
+            <basic name="esDeixa">
+                <column name="es_deixa"/>
+            </basic>
+            <basic name="momentCreacio" optional="false">
+                <column nullable="false" name="moment_creacio" updatable="false"/>
+            </basic>
+            <basic name="momentModificacio" >
+                <column name="moment_modificacio"/>
+            </basic>
+            <one-to-many name="prestecs" mapped-by="fitxa">
+                <cascade>
+                    <cascade-remove/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+    <entity class="org.milaifontanals.biblioteca.FitxaLlibre" access="FIELD" metadata-complete="true">
+        <table name="f_llibre"/>
+        <discriminator-value>L</discriminator-value>        
+        <attributes>
+            <basic name="editorial">
+                <column length="30"/>
+            </basic>
+            <basic name="isbn">
+                <column length="13"/>
+            </basic>
+            <many-to-many name="autors">
+                <join-table name="autoria">
+                    <join-column name="llibre" nullable="false" referenced-column-name="referencia"/>
+                    <foreign-key name="autoria_fk_f_llibre"
+                                 foreign-key-definition="foreign key(llibre) references f_llibre on delete cascade"/>
+                    <inverse-join-column name="autor" nullable="false" referenced-column-name="id"/>
+                    <inverse-foreign-key name="autoria_fk_autor"
+                                         foreign-key-definition="foreign key(autor) references autor on delete cascade"/>
+                    <unique-constraint name="autoria_pk_llibre_autor">
+                        <column-name>llibre</column-name>
+                        <column-name>autor</column-name>
+                    </unique-constraint>
+                </join-table>   
+                <cascade>
+                    <cascade-persist/>
+                </cascade>
+            </many-to-many>
+        </attributes>
+    </entity>
+    <entity class="org.milaifontanals.biblioteca.FitxaRevista" access="FIELD" metadata-complete="true">
+        <table name="f_revista"/>
+        <discriminator-value>R</discriminator-value>        
+        <attributes>
+            <basic name="any">
+                <column name="anyo" column-definition="integer not null check (anyo>0)"/>
+            </basic>
+            <basic name="num">
+                <column column-definition="integer not null check (num>0)"/>
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>

@@ -15,6 +15,9 @@ public class FitxaRevista extends Fitxa {
     private int any;
     private int num;
 
+    protected FitxaRevista () {
+        
+    }
     public FitxaRevista(String referencia, String titol, int any, int num) {
         super(referencia, titol);
         setAny(any);

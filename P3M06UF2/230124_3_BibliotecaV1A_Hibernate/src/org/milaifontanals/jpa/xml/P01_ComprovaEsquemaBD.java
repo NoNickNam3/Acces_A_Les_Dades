@@ -5,7 +5,10 @@
  */
 package org.milaifontanals.jpa.xml;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.HashMap;
+import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -29,22 +32,25 @@ public class P01_ComprovaEsquemaBD {
             em = null;
             emf = null;
             System.out.println("Intent amb " + up);
-            HashMap<String,String> propietats = new HashMap();
+            HashMap<String, String> propietats = new HashMap();
             propietats.put("hibernate.hbm2ddl.auto", "create");
-            emf = Persistence.createEntityManagerFactory(up,propietats);
+            emf = Persistence.createEntityManagerFactory(up, propietats);
             System.out.println("EntityManagerFactory creada");
             em = emf.createEntityManager();
             System.out.println();
             System.out.println("EntityManager creat");
-            
-            
+
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
             System.out.print(ex.getCause() != null ? "Caused by:" + ex.getCause().getMessage() + "\n" : "");
             System.out.println("Traça:");
             ex.printStackTrace();
         } finally {
-            if (em != null) {if (em.getTransaction().isActive()) {em.getTransaction().rollback();}em.close();
+            if (em != null) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                em.close();
                 System.out.println("EntityManager tancat");
             }
             if (emf != null) {

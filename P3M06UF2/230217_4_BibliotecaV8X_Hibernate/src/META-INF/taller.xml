@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.biblioteca.Taller" access="FIELD" metadata-complete="true">
+        <attributes>
+            <id name="codi">
+                <column length="4"/>
+            </id>
+            <basic name="titol" optional="false">
+                <column nullable="false" length="30"/>
+            </basic>
+            <basic name="descripcio">
+                <lob/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="org.milaifontanals.biblioteca.AgendaTallers" access="FIELD" metadata-complete="true">
+        <table name="agenda_tallers"/>
+        <id-class class="org.milaifontanals.biblioteca.AgendaTallersId"/>
+        <attributes>
+            <id name="codiTaller">
+                <column name="codi_taller" length="4"/>
+            </id>
+            <id name="momentInici">
+                <column name="moment_inici"/>
+                <temporal>DATE</temporal>
+            </id>
+            <basic name="detalls">
+                <lob/>
+            </basic>
+            <many-to-one name="taller" fetch="LAZY">
+                <join-column name="codi_taller" updatable="false" insertable="false"/>
+                <foreign-key name="agenda_tallers_fk_taller"
+                             foreign-key-definition="foreign key(codi_taller) references taller on delete cascade"/>                
+                <cascade>
+                    <cascade-persist/>
+                </cascade>
+            </many-to-one>
+            <many-to-many name="socis">
+                <join-table name="inscripcio">
+                    <join-column name="taller" nullable="false" referenced-column-name="codi_taller"/>
+                    <join-column name="moment_inici" nullable="false" referenced-column-name="moment_inici"/>
+                    <foreign-key name="inscripcio_fk_agenda_tallers"
+                                 foreign-key-definition="foreign key(taller, moment_inici) refernces taller on delete cascade"/>
+                    <inverse-join-column name="soci" nullable="false" referenced-column-name="codi"/>
+                    <inverse-foreign-key name="inscripcio_fk_soci"
+                                         foreign-key-definition="foreign key(soci) references soci on delete cascade"/>
+                    <unique-constraint name="inscripcio_pk_soci_agenda">
+                        <column-name>soci</column-name>
+                        <column-name>taller</column-name>
+                        <column-name>moment_inici</column-name>
+                    </unique-constraint>
+                </join-table>   
+                <cascade>
+                    <cascade-persist/>
+                </cascade>
+            </many-to-many>
+            
+        </attributes>
+    </entity>
+</entity-mappings>

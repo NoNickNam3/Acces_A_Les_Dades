@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.jpa.Color" access="FIELD" metadata-complete="true">
+        <attributes>
+            <embedded-id name="colorId"/>
+            <basic name="description" optional="false">
+                <column length="20" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+    <embeddable class="org.milaifontanals.jpa.ColorId" access="FIELD" metadata-complete="true">
+        <attributes>
+            <basic name="red">
+                <column column-definition="numeric(3,0) constraint color_ck_red check (red between 0 and 255)"/>
+            </basic>
+            <basic name="green">
+                <column column-definition="numeric(3,0) constraint color_ck_green check (green between 0 and 255)"/>
+            </basic>
+            <basic name="blue">
+                <column column-definition="numeric(3,0) constraint color_ck_blue check (blue between 0 and 255)"/>
+            </basic>
+        </attributes>
+    </embeddable>
+</entity-mappings>

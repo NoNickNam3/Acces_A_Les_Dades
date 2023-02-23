@@ -5,13 +5,9 @@
  */
 package org.milaifontanals.jpa.xml;
 
-import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.milaifontanals.biblioteca.Fitxa;
-import org.milaifontanals.biblioteca.Prestec;
-import org.milaifontanals.biblioteca.Soci;
 
 /**
  *
@@ -35,13 +31,6 @@ public class P01_ComprovaEsquemaBD {
             emf = Persistence.createEntityManagerFactory(up);
             System.out.println("EntityManagerFactory creada");
             em = emf.createEntityManager();
-            em.getTransaction().begin();
-            Fitxa f = new Fitxa("0123456789", "Fitxa 01");
-            f.setEsDeixa(Boolean.TRUE);
-            em.persist(f);
-            em.getTransaction().commit();
-            Prestec pr = new Prestec(01, em.find(Soci.class, 1), em.find(Fitxa.class, "0123456789"), new Date());
-            em.persist(pr);
             System.out.println();
             System.out.println("EntityManager creat");
             

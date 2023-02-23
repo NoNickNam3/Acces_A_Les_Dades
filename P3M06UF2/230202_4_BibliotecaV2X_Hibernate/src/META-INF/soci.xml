@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.biblioteca.Soci" access="FIELD" metadata-complete="true">
+        <table name="soci">
+            <index name="SOCI_IDX_COGNOMS_NOM"
+                   column-list="cognom1,cognom2,nom">
+            </index>
+        </table>
+        <attributes>
+            <id name="codi">
+                <generated-value strategy="TABLE" generator="gen_clau_table"/>
+                <table-generator name="gen_clau_table" table="comptadors"
+                                 pk-column-name="taula" value-column-name="comptador"
+                                 pk-column-value="soci" allocation-size="1"
+                                 initial-value="100"/>
+            </id>
+            <basic name="cognom1" optional="false">
+                <column nullable="false" length="30"/>
+            </basic>
+            <basic name="cognom2">
+                <column length="30"/>
+            </basic>
+            <basic name="nom" optional="false">
+                <column nullable="false" length="30"/>
+            </basic>
+            <basic name="dataNaix" optional="false">
+                <column name="data_naix" nullable="false"/>
+            </basic>
+            <basic name="sexe">
+                <column column-definition="char not null check (sexe in ('M','F'))"/>
+            </basic>
+            <element-collection name="telefons">
+                <collection-table name="soci_telefons">
+                    <join-column name="soci"/>
+                    <foreign-key name="soci_telefons_fk_soci"/>
+                    <unique-constraint name="soci_telefons_un_soci_numero">
+                        <column-name>soci</column-name>                         
+                        <column-name>numero</column-name>
+                    </unique-constraint>
+                </collection-table>
+            </element-collection> 
+            <embedded name="tutoria"/>           
+        </attributes>
+    </entity>
+
+</entity-mappings>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="org.milaifontanals.rrhh.Empleat" access="FIELD" metadata-complete="true">
+        <table name="EMPLOYEES">
+            <unique-constraint name="EMP_EMAIL_IK">
+                <column-name>EMAIL</column-name>
+            </unique-constraint>
+        </table>
+        <named-query name="trobaTots">
+            <query>select e from Empleat e</query>
+        </named-query>
+        <named-query name="trobaEmpleatPerId">
+            <query>select e from Empleat e where e.id = :id</query>
+        </named-query>
+        <named-query name="trobaContractesDeEmpleatPerId">
+            <query>select e.contractes from Empleat e where e.id = :id</query>
+        </named-query>
+        <attributes>
+            <id name="id">
+                <column name="EMPLOYEE_ID" column-definition="number(6)"/>
+                <generated-value strategy="TABLE" generator="gen_clau_table"/>
+                <table-generator name="gen_clau_table" table="IDS"
+                                 pk-column-name="TABLE_NAME" value-column-name="LAST_ID"
+                                 pk-column-value="EMPLOYEES" allocation-size="1"
+                                 initial-value="206"/>
+            </id>
+            <basic name="nom" >
+                <column name="FIRST_NAME" length="20"/>
+            </basic>
+            <basic name="cognom" optional="false">
+                <column name="LAST_NAME" length="20" nullable="false"/>
+            </basic>
+            <basic name="eMail" optional="false">
+                <column length="25" nullable="false"/>
+            </basic>
+            <basic name="telefon">
+                <column name="PHONE_NUMBER" length="20"/>
+            </basic>
+            <basic name="dataAlta" optional="false">
+                <column name="HIRE_DATE" nullable="false"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="salari">
+                <column name="SALARY" column-definition="number(8,2)"/>
+            </basic>
+            <basic name="comissio">
+                <column name="COMMISSION_PCT" column-definition="number(2,2)"/>
+            </basic>
+            <many-to-one name="departament" fetch="LAZY">
+                <join-column name="DEPARTMENT_ID"/>
+                <foreign-key name="EMP_DEPT_FK" 
+                             foreign-key-definition="FOREIGN KEY(DEPARTMENT_ID) REFERENCES DEPARTMENTS"/>
+                <cascade>
+                    <cascade-persist/>
+                </cascade>
+            </many-to-one>
+            <many-to-one name="treball" optional="false" fetch="LAZY">
+                <join-column name="JOB_ID"/>
+                <foreign-key name="EMP_JOB_FK"
+                             foreign-key-definition="FOREIGN KEY(JOB_ID) REFERENCES JOBS"/>
+                <cascade>
+                    <cascade-persist/>
+                </cascade>
+            </many-to-one>
+            <one-to-many name="contractes" mapped-by="empleat">
+                <cascade>
+                    <cascade-remove/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+</entity-mappings>
